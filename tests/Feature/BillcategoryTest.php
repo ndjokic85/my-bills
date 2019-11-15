@@ -9,14 +9,12 @@ use Tests\TestCase;
 class BillcategoryTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function user_can_read_bill_categories()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $billCategory = factory('App\Model\BillCategory')->create();
+        $response = $this->get('/billCategory');
+        $response->assertSee($billCategory->name);
     }
 }

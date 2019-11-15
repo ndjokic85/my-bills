@@ -17,8 +17,6 @@ class CreateBillCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamp('due_day')->nullable();
-            $table->timestamp('start_time')->nullable();
-            $table->string('repeat');
             $table->timestamps();
         });
     }
@@ -32,4 +30,4 @@ class CreateBillCategoriesTable extends Migration
     {
         Schema::dropIfExists('bill_categories');
     }
-}   
+}

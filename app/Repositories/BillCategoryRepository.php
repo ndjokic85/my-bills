@@ -17,4 +17,13 @@ class BillCategoryRepository implements BillCategoryRepositoryInterface
   {
     return $this->billCategoryModel->all();
   }
+  public function latest()
+  {
+    return $this->billCategoryModel->latest()->get();
+  }
+  public function first()
+  {
+    return $this->billCategoryModel->first()->get();
+  }
+  }
 }

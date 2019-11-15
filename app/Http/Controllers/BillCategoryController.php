@@ -19,7 +19,8 @@ class BillCategoryController extends Controller
      */
     public function index()
     {
-        $all = $this->billCategoryRepository->all();
+        $category = $this->billCategoryRepository->latest();
+        return view('categories.index',compact('categories'));
     }
 
     /**
