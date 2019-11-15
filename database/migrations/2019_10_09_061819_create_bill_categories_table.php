@@ -16,7 +16,9 @@ class CreateBillCategoriesTable extends Migration
         Schema::create('bill_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('dueDay');
+            $table->timestamp('due_day')->nullable();
+            $table->timestamp('start_time')->nullable();
+            $table->string('repeat');
             $table->timestamps();
         });
     }
@@ -30,4 +32,4 @@ class CreateBillCategoriesTable extends Migration
     {
         Schema::dropIfExists('bill_categories');
     }
-}
+}   
