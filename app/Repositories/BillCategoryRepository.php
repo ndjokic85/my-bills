@@ -25,5 +25,5 @@ class BillCategoryRepository implements BillCategoryRepositoryInterface
   {
     return $this->billCategoryModel->first()->get();
   }
-  }
+  
 }
