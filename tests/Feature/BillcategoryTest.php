@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,10 +12,13 @@ class BillcategoryTest extends TestCase
     /**
      * @test
      */
-    public function user_can_read_bill_categories()
+    public function it_can_show_the_bill_category_index_page()
     {
-        $billCategory = factory('App\Model\BillCategory')->create();
-        $response = $this->get('/billCategory');
-        $response->assertSee($billCategory->name);
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+            ->get(route('billCategory.index'))
+            ->assertStatus(200)
+            ->assertSee('Name')
+            ->assertSee('Due day');
     }
 }

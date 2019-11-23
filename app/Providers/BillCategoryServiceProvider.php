@@ -9,7 +9,7 @@ class BillCategoryServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->when('App\Http\Controllers\BillCategoryController')
+        $this->app->when('App\Http\Controllers\Front\BillCategoryController')
             ->needs('App\Repositories\BillCategoryRepositoryInterface')
             ->give('App\Repositories\BillCategoryRepository');
     }

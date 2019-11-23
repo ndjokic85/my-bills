@@ -14,4 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('billCategory', 'BillCategoryController');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('billCategory', 'Front\BillCategoryController');
+});

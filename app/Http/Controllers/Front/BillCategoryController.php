@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repositories\BillCategoryRepositoryInterface;
+use Illuminate\Http\Request;
 
 class BillCategoryController extends Controller
 {
-    protected $billCategoryRepository;
-
-    function __construct(BillCategoryRepositoryInterface $billCategoryInterface)
+    protected $billCategoryRepositoryInterface;
+    public function __construct(BillCategoryRepositoryInterface $billCategoryRepositoryInterface)
     {
-        $this->billCategoryRepository = $billCategoryInterface;
+        $this->billCategoryRepositoryInterface = $billCategoryRepositoryInterface;
     }
-
     /**
-     * 
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $category = $this->billCategoryRepository->latest();
-        return view('categories.index',compact('categories'));
+        $billCategories = $this->billCategoryRepositoryInterface->all();
     }
 
     /**
@@ -36,7 +36,7 @@ class BillCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +47,7 @@ class BillCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -58,7 +58,7 @@ class BillCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -69,8 +69,8 @@ class BillCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -81,7 +81,7 @@ class BillCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
