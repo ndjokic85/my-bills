@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\BillCategoryRepositoryInterface;
+use App\Repositories\Front\BillCategoryRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BillCategoryController extends Controller
@@ -21,6 +21,7 @@ class BillCategoryController extends Controller
     public function index()
     {
         $billCategories = $this->billCategoryRepositoryInterface->all();
+        return view('categories.index', compact('billCategories'));
     }
 
     /**

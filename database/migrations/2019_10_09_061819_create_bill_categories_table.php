@@ -17,6 +17,8 @@ class CreateBillCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamp('due_day')->nullable();
+            $table->timestamp('valid_from')->nullable();
+            $table->timestamp('valid_to')->nullable();
             $table->timestamps();
         });
     }

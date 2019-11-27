@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Front;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,8 +17,6 @@ class BillcategoryTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user)
             ->get(route('billCategory.index'))
-            ->assertStatus(200)
-            ->assertSee('Name')
-            ->assertSee('Due day');
+            ->assertStatus(200);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Front;
 
-use App\Model\BillCategory;
+use App\Model\Front\BillCategory;
 
 class BillCategoryRepository implements BillCategoryRepositoryInterface
 {
@@ -25,5 +25,4 @@ class BillCategoryRepository implements BillCategoryRepositoryInterface
   {
     return $this->billCategoryModel->first()->get();
   }
-  
 }
