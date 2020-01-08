@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateBillCategoryRequest;
+use App\Http\Requests\UpdateBillCategoryRequest;
 use App\Repositories\Front\BillCategoryRepositoryInterface;
-use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class BillCategoryController extends Controller
 {
-  protected $billCategoryRepositoryInterface;
-  public function __construct(BillCategoryRepositoryInterface $billCategoryRepositoryInterface)
+  protected $billCategoryRepository;
+  public function __construct(BillCategoryRepositoryInterface $billCategoryRepository)
   {
-    $this->billCategoryRepositoryInterface = $billCategoryRepositoryInterface;
+    $this->billCategoryRepository = $billCategoryRepository;
   }
   /**
    * Display a listing of the resource.
@@ -20,7 +22,7 @@ class BillCategoryController extends Controller
    */
   public function index()
   {
-    $billCategories = $this->billCategoryRepositoryInterface->all();
+    $billCategories = $this->billCategoryRepository->all();
     return view('categories.index', compact('billCategories'));
   }
 
@@ -40,9 +42,14 @@ class BillCategoryController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(CreateBillCategoryRequest $request)
   {
-    //
+    try {
+      $this->billCategoryRepository->store($request);
+    } catch (QueryException $e) {
+      return back()->withError($e->getMessage())->withInput();
+    }
+    return redirect('/billCategory');
   }
 
   /**
@@ -74,9 +81,16 @@ class BillCategoryController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(UpdateBillCategoryRequest $request, $id)
   {
-    //
+    try {
+      $this->billCategoryRepository->update($request);
+    }
+
+     catch (QueryException $e) {
+      return back()->withError($e->getMessage())->withInput();
+    }
+      return redirect('/billCategory/'.$id);
   }
 
   /**
